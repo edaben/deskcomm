@@ -3735,6 +3735,12 @@ export const DICIONARIO: Traducoes = {
   "Belém (Brasil)": { es: "Belém (Brasil)" },
   "Recife (Brasil)": { es: "Recife (Brasil)" },
   "Fortaleza (Brasil)": { es: "Fortaleza (Brasil)" },
+  "Nova York (EUA)": { es: "Nueva York (EE. UU.)" },
+  "Los Angeles (EUA)": { es: "Los Ángeles (EE. UU.)" },
+  "Londres (Reino Unido)": { es: "Londres (Reino Unido)" },
+  "Madri (Espanha)": { es: "Madrid (España)" },
+  "Paris (França)": { es: "París (Francia)" },
+  "Berlim (Alemanha)": { es: "Berlín (Alemania)" },
   // ─── Idiomas de definição de template (canal parceiro) ───
   Espanhol: { es: "Español" },
   "Espanhol (Argentina)": { es: "Español (Argentina)" },

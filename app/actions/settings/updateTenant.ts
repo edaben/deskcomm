@@ -66,6 +66,7 @@ export async function updateTenant(input: TenantInput): Promise<UpdateTenantResu
   const currentSettings = (orgRow?.settings as Record<string, unknown> | null) ?? {};
   const nextSettings = {
     ...currentSettings,
+    country: parsed.data.country,
     lost_reasons_extra: parsed.data.lost_reasons_extra,
   };
 

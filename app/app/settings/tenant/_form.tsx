@@ -17,19 +17,11 @@ import { updateTenant } from "@/app/actions/settings/updateTenant";
 import { useT } from "@/hooks/i18n/useT";
 import { MOEDAS_SERVIDAS, simboloDaMoeda, type MoedaServida } from "@/lib/money";
 import { tenantSchema, type Locale, type TenantInput } from "@/lib/schemas/settings";
+import { PAISES_DISPONIBLES, FUSOS_HORARIOS } from "@/lib/tempo/opcoes";
 
 interface Props {
   initial: TenantInput;
 }
-
-const TIMEZONES = [
-  "America/Sao_Paulo",
-  "America/Manaus",
-  "America/Belem",
-  "America/Recife",
-  "America/Fortaleza",
-  "UTC",
-];
 
 export function TenantForm({ initial }: Props) {
   const t = useT();
@@ -102,13 +94,28 @@ export function TenantForm({ initial }: Props) {
             />
           </div>
           <div className="space-y-2">
+            <Label htmlFor="country">{t("País")}</Label>
+            <Select value={form.country ?? "EC"} onValueChange={(v) => set("country", v)}>
+              <SelectTrigger id="country">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {PAISES_DISPONIBLES.map((pais) => (
+                  <SelectItem key={pais.codigo} value={pais.codigo}>
+                    {pais.nome}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="timezone">{t("Fuso horário")}</Label>
             <Select value={form.timezone} onValueChange={(v) => set("timezone", v)}>
               <SelectTrigger id="timezone">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {TIMEZONES.map((tz) => (
+                {FUSOS_HORARIOS.map((tz) => (
                   <SelectItem key={tz} value={tz}>
                     {tz}
                   </SelectItem>

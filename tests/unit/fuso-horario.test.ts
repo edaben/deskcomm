@@ -27,6 +27,7 @@ import { describe, expect, it } from "vitest";
  */
 import { availabilityScheduleSchema } from "@/lib/schemas/routing";
 import { FUSOS_OFERECIDOS, fusoValido } from "@/lib/tempo/fusos";
+import { FUSOS_HORARIOS, PAISES_DISPONIBLES } from "@/lib/tempo/opcoes";
 
 describe("a checagem do fuso", () => {
   it("aceita o que o runtime sabe usar", () => {
@@ -66,6 +67,27 @@ describe("todo fuso oferecido é utilizável", () => {
 
   it("Assunção está na lista — é o fuso deste país", () => {
     expect(FUSOS_OFERECIDOS.map((f) => f.codigo)).toContain("America/Asuncion");
+  });
+
+  it("oferece fusos internacionais além do Brasil", () => {
+    const codigos = FUSOS_OFERECIDOS.map((f) => f.codigo);
+    expect(codigos).toContain("America/New_York");
+    expect(codigos).toContain("Europe/London");
+    expect(codigos).toContain("Europe/Madrid");
+  });
+
+  it("oferece a lista completa de fusos IANA do runtime", () => {
+    expect(FUSOS_HORARIOS.length).toBeGreaterThan(400);
+    expect(FUSOS_HORARIOS).toContain("America/Guayaquil");
+    expect(FUSOS_HORARIOS).toContain("UTC");
+  });
+});
+
+describe("a lista de países", () => {
+  it("oferece os 249 códigos ISO 3166-1 alpha-2 com nomes em espanhol", () => {
+    expect(PAISES_DISPONIBLES).toHaveLength(249);
+    expect(PAISES_DISPONIBLES).toContainEqual({ codigo: "EC", nome: "Ecuador" });
+    expect(PAISES_DISPONIBLES).toContainEqual({ codigo: "BR", nome: "Brasil" });
   });
 });
 

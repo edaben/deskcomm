@@ -45,6 +45,7 @@ export default async function TenantSettingsPage() {
     (row?.settings && Array.isArray((row.settings as { lost_reasons_extra?: unknown }).lost_reasons_extra)
       ? ((row.settings as { lost_reasons_extra?: string[] }).lost_reasons_extra ?? [])
       : []) as string[];
+  const country = ((row?.settings as { country?: string } | null)?.country ?? "EC");
   const idioma = user.idioma;
 
   return (
@@ -61,6 +62,7 @@ export default async function TenantSettingsPage() {
             display_name: row.display_name,
             legal_name: row.legal_name,
             cnpj: row.cnpj,
+            country,
             timezone: row.timezone,
             // `en-US` saiu da lista (nunca teve tradução). Uma linha antiga
             // com ele cai no padrão em vez de quebrar a tela.
